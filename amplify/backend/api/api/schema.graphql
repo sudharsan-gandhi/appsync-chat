@@ -1,0 +1,41 @@
+type User @model {
+  id:ID!
+  name: String!
+  online: Status
+  timestamp: AWSTimestamp
+  email: String!
+  conversation: [Conversation!]
+}
+
+
+type Conversation @model {
+  id: ID!
+  userone: User!
+  usertwo: User!
+  status: Status!
+  timestamp: AWSTimestamp
+}
+
+type Message @model {
+  id: ID!
+  message: String!
+  sender: User!
+  conversation: Conversation!
+  type: MessageType
+  timestamp: AWSTimestamp
+}
+
+enum Status {
+  active,
+  inactive
+}
+
+enum MessageStatus {
+  sent,
+  received
+}
+
+enum MessageType {
+  request,
+  message
+}
